@@ -28,10 +28,10 @@ namespace ExcelInterface
         {
             _filePath = filePath;
             
-            using (
-                SpreadsheetDocument excelDoc = SpreadsheetDocument.Open(_filePath, true))
+            using ( SpreadsheetDocument excelDoc = SpreadsheetDocument.Open(_filePath, true))
             {
                 _firstSheetName = excelDoc.WorkbookPart.Workbook.Descendants<Sheet>().ElementAt(1).Name;
+                excelDoc.Close();
             }
         }
         public void ProcessFirstSheet()
@@ -192,6 +192,7 @@ namespace ExcelInterface
                 var Cell = outPutCell.CellValue;
                 string value = Cell.InnerText.ToString();
                 outInt = Convert.ToInt32(value);
+                excelDoc.Close();
             }
             if (outInt.Equals(0))
             {
@@ -211,6 +212,7 @@ namespace ExcelInterface
                 Cell outPutCell = GetCell(wp, cellCo);
                 var value = outPutCell.CellValue;
                 doubleCell = value.InnerText.ToString();
+                excelDoc.Close();
             }
 
             return Convert.ToDouble(doubleCell);
@@ -236,7 +238,7 @@ namespace ExcelInterface
                 Cell cell = GetCell(excelDoc, sheetName, cellCoordinates);
 
                 string_cell = cell.CellValue.InnerText.ToString();
-
+                excelDoc.Close();
             }
             if (string_cell != null)
             {
@@ -280,6 +282,7 @@ namespace ExcelInterface
 
                 // Save the new worksheet.
                 worksheetPart.Worksheet.Save();
+                excelDoc.Close();
             }
         }
         // Given text and a SharedStringTablePart, creates a SharedStringItem with the specified text 
@@ -317,6 +320,7 @@ namespace ExcelInterface
             {
                 excelDoc.WorkbookPart.Workbook.CalculationProperties.ForceFullCalculation = true;
                 excelDoc.WorkbookPart.Workbook.CalculationProperties.FullCalculationOnLoad = true;
+                excelDoc.Close();
             }
             var excelApp = new Application();
             int count = 1;
@@ -324,6 +328,7 @@ namespace ExcelInterface
             {
                 if (land)
                 {
+
                     //KB DEBUG: uplift and sliding were backwards, fixed it.
                     Write_U_and_S_To_Sheet(panel.Uplift.ToString(), panel.Sliding.ToString());
                     var workbook = excelApp.Workbooks.Open(_filePath, true);
@@ -334,6 +339,7 @@ namespace ExcelInterface
                     Console.WriteLine("Uplift Value :" + panel.Uplift);
                     Console.WriteLine("Sliding Value :" + panel.Sliding);
                     Console.WriteLine("Center :" + panel.Center);
+
                 }
                 else
                 {

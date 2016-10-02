@@ -115,3 +115,6 @@ C:\Users\Owner\Desktop\EcoLibriumSolar\BallastCalculator\BallastCalculator\obj\R
 C:\Users\Owner\Desktop\EcoLibriumSolar\BallastCalculator\BallastCalculator\obj\Release\BallastCalculator.exe
 C:\Users\Owner\Desktop\EcoLibriumSolar\BallastCalculator\BallastCalculator\obj\Release\BallastCalculator.pdb
 C:\Users\kbasa\Documents\GitHub\EcoLibSolarBalCal\BallastCalculator\BallastCalculator\obj\Release\BallastCalculator.DropDownList.resources
+C:\Users\kbasa\Documents\GitHub\balcalparse\BallastCalculator\BallastCalculator\bin\Release\BallastCalculator.exe.config
+C:\Users\kbasa\Documents\GitHub\balcalparse\BallastCalculator\BallastCalculator\obj\Release\BallastCalculator.exe
+C:\Users\kbasa\Documents\GitHub\balcalparse\BallastCalculator\BallastCalculator\obj\Release\BallastCalculator.pdb
