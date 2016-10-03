@@ -174,7 +174,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>JIv8DqnWJ9mIzRbJfFlMT/1uHg4aTlQj1qwaB6pQiSI=</dsig:DigestValue>
+        <dsig:DigestValue>b+Tsann62tlzTnxteICz5Z0MZBKh4lFUDYp52bjtDs4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -215,14 +215,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ExcelInterface.dll" size="15872">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ExcelInterface.dll" size="16384">
       <assemblyIdentity name="ExcelInterface" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>HBIQr2Uir11u8ZVU6AhnsxVfsZB0MTNsTNEMkElSnV4=</dsig:DigestValue>
+        <dsig:DigestValue>uELht0xqybguc1XRFmdrCzbV9lfT38GD9d66p2WuMAw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -27,12 +27,12 @@ namespace ExcelInterface
         public ExcelIO(string filePath)
         {
             _filePath = filePath;
-            
-            using ( SpreadsheetDocument excelDoc = SpreadsheetDocument.Open(_filePath, true))
-            {
-                _firstSheetName = excelDoc.WorkbookPart.Workbook.Descendants<Sheet>().ElementAt(1).Name;
-                excelDoc.Close();
-            }
+            _firstSheetName = "1-Eng Inputs";
+//           using ( SpreadsheetDocument excelDoc = SpreadsheetDocument.Open(_filePath, true))
+//           {
+//               _firstSheetName = excelDoc.WorkbookPart.Workbook.Descendants<Sheet>().ElementAt(1).Name;
+//               excelDoc.Close();
+//           }
         }
         public void ProcessFirstSheet()
         {
@@ -185,14 +185,17 @@ namespace ExcelInterface
         public bool CheckFirst(string cellCo)
         {
             int outInt = 0;
-            using (SpreadsheetDocument excelDoc = SpreadsheetDocument.Open(_filePath, true))
+            using (FileStream excelFs = new FileStream(_filePath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
             {
-                WorksheetPart wp = GetWorksheetPart(excelDoc, _firstSheetName);
-                Cell outPutCell = GetCell(wp, cellCo);
-                var Cell = outPutCell.CellValue;
-                string value = Cell.InnerText.ToString();
-                outInt = Convert.ToInt32(value);
-                excelDoc.Close();
+                using (SpreadsheetDocument excelDoc = SpreadsheetDocument.Open(excelFs, true))
+                {
+
+                    WorksheetPart wp = GetWorksheetPart(excelDoc, _firstSheetName);
+                    Cell outPutCell = GetCell(wp, cellCo);
+                    var Cell = outPutCell.CellValue;
+                    string value = Cell.InnerText.ToString();
+                    outInt = Convert.ToInt32(value);
+                }
             }
             if (outInt.Equals(0))
             {
@@ -206,13 +209,16 @@ namespace ExcelInterface
         public double GetBalast(string cellCo)
         {
             string doubleCell = null;
-            using (SpreadsheetDocument excelDoc = SpreadsheetDocument.Open(_filePath, true))
+            using (FileStream excelFs = new FileStream(_filePath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
             {
-                WorksheetPart wp = GetWorksheetPart(excelDoc, _firstSheetName);
-                Cell outPutCell = GetCell(wp, cellCo);
-                var value = outPutCell.CellValue;
-                doubleCell = value.InnerText.ToString();
-                excelDoc.Close();
+                using (SpreadsheetDocument excelDoc = SpreadsheetDocument.Open(excelFs, true))
+                {
+
+                    WorksheetPart wp = GetWorksheetPart(excelDoc, _firstSheetName);
+                    Cell outPutCell = GetCell(wp, cellCo);
+                    var value = outPutCell.CellValue;
+                    doubleCell = value.InnerText.ToString();
+                }
             }
 
             return Convert.ToDouble(doubleCell);
@@ -231,19 +237,20 @@ namespace ExcelInterface
         public string ReadCell(string sheetName, string cellCoordinates)
         {
             string string_cell = null;
-          
-            using (SpreadsheetDocument excelDoc = SpreadsheetDocument.Open(_filePath, true))
-            {
-                WorksheetPart wbpart = GetWorksheetPart(excelDoc, sheetName);
-                Cell cell = GetCell(excelDoc, sheetName, cellCoordinates);
 
-                string_cell = cell.CellValue.InnerText.ToString();
-                excelDoc.Close();
+            using (FileStream excelFs = new FileStream(_filePath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
+            {
+                using (SpreadsheetDocument excelDoc = SpreadsheetDocument.Open(excelFs, true))
+                {
+
+                    WorksheetPart wbpart = GetWorksheetPart(excelDoc, sheetName);
+                    Cell cell = GetCell(excelDoc, sheetName, cellCoordinates);
+                    string_cell = cell.CellValue.InnerText.ToString();
+                }
             }
             if (string_cell != null)
             {
                 return string_cell;
-
             }
             else
             {
@@ -253,36 +260,39 @@ namespace ExcelInterface
         public void InsertText(string sheetName, Tuple<string, uint> cellCO, string text)
         {
             // Open the document for editing.
-            using (SpreadsheetDocument excelDoc = SpreadsheetDocument.Open(_filePath, true))
+            using (FileStream excelFs = new FileStream(_filePath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
             {
-                // Get the SharedStringTablePart. If it does not exist, create a new one.
-                SharedStringTablePart shareStringPart;
-                if (excelDoc.WorkbookPart.GetPartsOfType<SharedStringTablePart>().Count() > 0)
+                using (SpreadsheetDocument excelDoc = SpreadsheetDocument.Open(excelFs, true))
                 {
-                    shareStringPart = excelDoc.WorkbookPart.GetPartsOfType<SharedStringTablePart>().First();
+
+                    // Get the SharedStringTablePart. If it does not exist, create a new one.
+                    SharedStringTablePart shareStringPart;
+                    if (excelDoc.WorkbookPart.GetPartsOfType<SharedStringTablePart>().Count() > 0)
+                    {
+                        shareStringPart = excelDoc.WorkbookPart.GetPartsOfType<SharedStringTablePart>().First();
+                    }
+                    else
+                    {
+                        shareStringPart = excelDoc.WorkbookPart.AddNewPart<SharedStringTablePart>();
+                    }
+
+                    // Insert the text into the SharedStringTablePart.
+                    int index = InsertSharedStringItem(text, shareStringPart);
+
+                    // Insert a new worksheet.
+                    WorksheetPart worksheetPart = GetWorksheetPart(excelDoc, sheetName);
+                    string column = cellCO.Item1;
+                    uint row = cellCO.Item2;
+                    // Insert cell A1 into the new worksheet.
+                    Cell cell = InsertCellInWorksheet(column, row, worksheetPart);
+
+                    // Set the value of cell A1.
+                    cell.CellValue = new CellValue(index.ToString());
+                    cell.DataType = new EnumValue<CellValues>(CellValues.SharedString);
+
+                    // Save the new worksheet.
+                    worksheetPart.Worksheet.Save();
                 }
-                else
-                {
-                    shareStringPart = excelDoc.WorkbookPart.AddNewPart<SharedStringTablePart>();
-                }
-
-                // Insert the text into the SharedStringTablePart.
-                int index = InsertSharedStringItem(text, shareStringPart);
-
-                // Insert a new worksheet.
-                WorksheetPart worksheetPart = GetWorksheetPart(excelDoc, sheetName);
-                string column = cellCO.Item1;
-                uint row = cellCO.Item2;
-                // Insert cell A1 into the new worksheet.
-                Cell cell = InsertCellInWorksheet(column, row, worksheetPart);
-
-                // Set the value of cell A1.
-                cell.CellValue = new CellValue(index.ToString());
-                cell.DataType = new EnumValue<CellValues>(CellValues.SharedString);
-
-                // Save the new worksheet.
-                worksheetPart.Worksheet.Save();
-                excelDoc.Close();
             }
         }
         // Given text and a SharedStringTablePart, creates a SharedStringItem with the specified text 
@@ -316,11 +326,14 @@ namespace ExcelInterface
         }
         public void RUNIO(bool land, List<EcoPanel> PanelList)//KB 9.29.16 forces sheet to recalculate on open, opens excel app, for each panel writes to excel, opens workbook, saves, closes workbook (this updates equation values), then closes excel app when done.
         {
-            using (SpreadsheetDocument excelDoc = SpreadsheetDocument.Open(_filePath, true))
+            using (FileStream excelFs = new FileStream(_filePath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
             {
-                excelDoc.WorkbookPart.Workbook.CalculationProperties.ForceFullCalculation = true;
-                excelDoc.WorkbookPart.Workbook.CalculationProperties.FullCalculationOnLoad = true;
-                excelDoc.Close();
+                using (SpreadsheetDocument excelDoc = SpreadsheetDocument.Open(excelFs, true))
+                {
+
+                    excelDoc.WorkbookPart.Workbook.CalculationProperties.ForceFullCalculation = true;
+                    excelDoc.WorkbookPart.Workbook.CalculationProperties.FullCalculationOnLoad = true;
+                }
             }
             var excelApp = new Application();
             int count = 1;
