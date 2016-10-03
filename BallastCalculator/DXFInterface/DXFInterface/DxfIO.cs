@@ -256,7 +256,7 @@ namespace DXFInterface
                 {
                     block_start = index + 2;
                     blocks_hit = true;
-                    Console.WriteLine(block_start);
+                    //Console.WriteLine(block_start);
                 }
                 if (blocks_hit)
                 {
@@ -264,7 +264,7 @@ namespace DXFInterface
                     {
                         block_end = index;
                         blocks_hit = false;
-                        Console.WriteLine(block_end);
+                        //Console.WriteLine(block_end);
                     }
                 }
 
@@ -420,11 +420,11 @@ namespace DXFInterface
             int flag = 0;
             IEnumerable<string> listOflines  = _inputFile.Where(x => ((x.Contains("10") | x.Contains("5")) && (x.Contains("deg") | x.Contains("Deg") | x.Contains("DEG")))).Distinct();
             List<string> panelNameList = listOflines.ToList();
-            foreach(var x in panelNameList)
-            {
-                Console.WriteLine(x);
-            }
-            Console.ReadKey();
+//           foreach(var x in panelNameList)
+//           {
+//               Console.WriteLine(x);
+//           }
+//           Console.ReadKey();
 
             return panelNameList;
         }
