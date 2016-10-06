@@ -90,122 +90,127 @@ namespace BallastCalculator
             double southRow = 1.6;
             List<double> mod_values = new List<double>();
 
-
-            if (ballastLoc == 1)
             {
-                ModNW = IFI_Value * 2 / 7 * northRow;
-                ModNE = IFI_Value * 2 / 7 * northRow;
-                ModSW = IFI_Value * 2 / 7;
-                ModSE = IFI_Value * 1 / 7;
-                mod_values.Add(ModNE);
-                mod_values.Add(ModNW);
-                mod_values.Add(ModSW);
-                mod_values.Add(ModSE);
-                return mod_values;
+                if (ballastLoc == 1)
+                {
+                    ModNW = IFI_Value * 2 / 7 * northRow;
+                    ModNE = IFI_Value * 2 / 7 * northRow;
+                    ModSW = IFI_Value * 2 / 7;
+                    ModSE = IFI_Value * 1 / 7;
+                    //                    mod_values.Add(ModNE);//list position 0
+                    //                    mod_values.Add(ModNW);//list position 1
+                    //                    mod_values.Add(ModSW);//list position 2
+                    //                    mod_values.Add(ModSE);//list position 3
+                    //                    return mod_values;
+                }
+                else if (ballastLoc == 2)
+                {
+                    ModNW = IFI_Value * 1 / 3 * northRow;
+                    ModNE = IFI_Value * 1 / 3 * northRow;
+                    ModSW = IFI_Value * 1 / 6;
+                    ModSE = IFI_Value * 1 / 6;
+                    //                    mod_values.Add(ModNE);//list position 0
+                    //                    mod_values.Add(ModNW);//list position 1
+                    //                    mod_values.Add(ModSW);//list position 2
+                    //                    mod_values.Add(ModSE);//list position 3
+                    //                    return mod_values;
+                }
+                else if (ballastLoc == 3)
+                {
+                    ModNW = IFI_Value * 2 / 7 * northRow;
+                    ModNE = IFI_Value * 2 / 7 * northRow;
+                    ModSW = IFI_Value * 1 / 7;
+                    ModSE = IFI_Value * 2 / 7;
+                    //                    mod_values.Add(ModNE);//list position 0
+                    //                    mod_values.Add(ModNW);//list position 1
+                    //                    mod_values.Add(ModSW);//list position 2
+                    //                    mod_values.Add(ModSE);//list position 3
+                    //                    return mod_values;
+                }
+                else if (ballastLoc == 4)
+                {
+                    ModNW = IFI_Value * 1 / 3;
+                    ModNE = IFI_Value * 1 / 6;
+                    ModSW = IFI_Value * 1 / 3;
+                    ModSE = IFI_Value * 1 / 6;
+                    //                    mod_values.Add(ModNE);//list position 0
+                    //                    mod_values.Add(ModNW);//list position 1
+                    //                    mod_values.Add(ModSW);//list position 2
+                    //                    mod_values.Add(ModSE);//list position 3
+                    //                    return mod_values;
+                }
+                else if (ballastLoc == 5)
+                {
+                    ModNW = IFI_Value * 1 / 4;
+                    ModNE = IFI_Value * 1 / 4;
+                    ModSW = IFI_Value * 1 / 4;
+                    ModSE = IFI_Value * 1 / 4;
+                    //                    mod_values.Add(ModNE);//list position 0
+                    //                    mod_values.Add(ModNW);//list position 1
+                    //                    mod_values.Add(ModSW);//list position 2
+                    //                    mod_values.Add(ModSE);//list position 3
+                    //                    return mod_values;
+                }
+                else if (ballastLoc == 6)
+                {
+                    ModNW = IFI_Value * 1 / 6;
+                    ModNE = IFI_Value * 1 / 3;
+                    ModSW = IFI_Value * 1 / 6;
+                    ModSE = IFI_Value * 1 / 3;
+                    //                    mod_values.Add(ModNE);//list position 0
+                    //                    mod_values.Add(ModNW);//list position 1
+                    //                    mod_values.Add(ModSW);//list position 2
+                    //                    mod_values.Add(ModSE);//list position 3
+                    //                    return mod_values;
+                }
+                else if (ballastLoc == 7)
+                {
+                    ModNW = IFI_Value * 1 / 3;
+                    ModNE = IFI_Value * 1 / 6;
+                    ModSW = IFI_Value * 1 / 3 * southRow;
+                    ModSE = IFI_Value * 1 / 6 * southRow;
+                    //                    mod_values.Add(ModNE);//list position 0
+                    //                    mod_values.Add(ModNW);//list position 1
+                    //                    mod_values.Add(ModSW);//list position 2
+                    //                    mod_values.Add(ModSE);//list position 3
+                    //                    return mod_values;
+                }
+                else if (ballastLoc == 8)
+                {
+                    ModNW = IFI_Value * 1 / 4;
+                    ModNE = IFI_Value * 1 / 4;
+                    ModSW = IFI_Value * 1 / 4 * southRow;
+                    ModSE = IFI_Value * 1 / 4 * southRow;
+                    //                    mod_values.Add(ModNE);//list position 0
+                    //                    mod_values.Add(ModNW);//list position 1
+                    //                    mod_values.Add(ModSW);//list position 2
+                    //                    mod_values.Add(ModSE);//list position 3
+                    //                    return mod_values;
+                }
+                else if (ballastLoc == 9)
+                {
+                    ModNW = IFI_Value * 1 / 6;
+                    ModNE = IFI_Value * 1 / 3;
+                    ModSW = IFI_Value * 1 / 6 * southRow;
+                    ModSE = IFI_Value * 1 / 3 * southRow;
+                    //                   mod_values.Add(ModNE);//list position 0
+                    //                   mod_values.Add(ModNW);//list position 1
+                    //                   mod_values.Add(ModSW);//list position 2
+                    //                   mod_values.Add(ModSE);//list position 3
+                    //                   return mod_values;
+                }
+                else
+                {
+                    ModNW = IFI_Value * 10;
+                    ModNE = IFI_Value * 10;
+                    ModSW = IFI_Value * 10;
+                    ModSE = IFI_Value * 10;
+                }
             }
-            else if (ballastLoc == 2)
-            {
-                ModNW = IFI_Value * 1 / 3 * northRow;
-                ModNE = IFI_Value * 1 / 3 * northRow;
-                ModSW = IFI_Value * 1 / 6;
-                ModSE = IFI_Value * 1 / 6;
-                mod_values.Add(ModNE);
-                mod_values.Add(ModNW);
-                mod_values.Add(ModSW);
-                mod_values.Add(ModSE);
-                return mod_values;
-            }
-            else if (ballastLoc == 3)
-            {
-                ModNW = IFI_Value * 2 / 7 * northRow;
-                ModNE = IFI_Value * 2 / 7 * northRow;
-                ModSW = IFI_Value * 1 / 7;
-                ModSE = IFI_Value * 2 / 7;
-                mod_values.Add(ModNE);
-                mod_values.Add(ModNW);
-                mod_values.Add(ModSW);
-                mod_values.Add(ModSE);
-                return mod_values;
-            }
-            else if (ballastLoc == 4)
-            {
-                ModNW = IFI_Value * 1 / 3;
-                ModNE = IFI_Value * 1 / 6;
-                ModSW = IFI_Value * 1 / 3;
-                ModSE = IFI_Value * 1 / 6;
-                mod_values.Add(ModNE);
-                mod_values.Add(ModNW);
-                mod_values.Add(ModSW);
-                mod_values.Add(ModSE);
-                return mod_values;
-            }
-            else if (ballastLoc == 5)
-            {
-                ModNW = IFI_Value * 1 / 4;
-                ModNE = IFI_Value * 1 / 4;
-                ModSW = IFI_Value * 1 / 4;
-                ModSE = IFI_Value * 1 / 4;
-                mod_values.Add(ModNE);
-                mod_values.Add(ModNW);
-                mod_values.Add(ModSW);
-                mod_values.Add(ModSE);
-                return mod_values;
-            }
-            else if (ballastLoc == 6)
-            {
-                ModNW = IFI_Value * 1 / 6;
-                ModNE = IFI_Value * 1 / 3;
-                ModSW = IFI_Value * 1 / 6;
-                ModSE = IFI_Value * 1 / 3;
-                mod_values.Add(ModNE);
-                mod_values.Add(ModNW);
-                mod_values.Add(ModSW);
-                mod_values.Add(ModSE);
-                return mod_values;
-            }
-            else if (ballastLoc == 7)
-            {
-                ModNW = IFI_Value * 1 / 3;
-                ModNE = IFI_Value * 1 / 6;
-                ModSW = IFI_Value * 1 / 3 * southRow;
-                ModSE = IFI_Value * 1 / 6 * southRow;
-                mod_values.Add(ModNE);
-                mod_values.Add(ModNW);
-                mod_values.Add(ModSW);
-                mod_values.Add(ModSE);
-                return mod_values;
-            }
-            else if (ballastLoc == 8)
-            {
-                ModNW = IFI_Value * 1 / 4;
-                ModNE = IFI_Value * 1 / 4;
-                ModSW = IFI_Value * 1 / 4 * southRow;
-                ModSE = IFI_Value * 1 / 4 * southRow;
-                mod_values.Add(ModNE);
-                mod_values.Add(ModNW);
-                mod_values.Add(ModSW);
-                mod_values.Add(ModSE);
-                return mod_values;
-            }
-            else if (ballastLoc == 9)
-            {
-                ModNW = IFI_Value * 1 / 6;
-                ModNE = IFI_Value * 1 / 3;
-                ModSW = IFI_Value * 1 / 6 * southRow;
-                ModSE = IFI_Value * 1 / 3 * southRow;
-                mod_values.Add(ModNE);
-                mod_values.Add(ModNW);
-                mod_values.Add(ModSW);
-                mod_values.Add(ModSE);
-                return mod_values;
-            }
-            else
-                mod_values.Add(1);
-                mod_values.Add(1);
-                mod_values.Add(1);
-            
-            mod_values.Add(1);
-
+            mod_values.Add(ModNE);//list position 0
+            mod_values.Add(ModNW);//list position 1
+            mod_values.Add(ModSW);//list position 2
+            mod_values.Add(ModSE);//list position 3
             return mod_values;
         }
         private void CalculatePanelCorners(EcoPanel EcoPanel)
@@ -217,64 +222,59 @@ namespace BallastCalculator
             Tuple<double, double> corner_neighbor_SE = new Tuple<double, double>(x_start + .5 * (.5 + BlocksValues.Width), y_start - .5 * (17.494 + BlocksValues.Height)); //SEast
             Tuple<double, double> corner_neighbor_SW = new Tuple<double, double>(x_start - .5 * (.5 + BlocksValues.Width), y_start - .5 * (17.494 + BlocksValues.Height)); //SWest
             List<Tuple<double, double>> temp_list = new List<Tuple<double, double>>();
-            temp_list.Add(corner_neighbor_NE);
-            temp_list.Add(corner_neighbor_NW);
-            temp_list.Add(corner_neighbor_SW);
-            temp_list.Add(corner_neighbor_SE);
+            temp_list.Add(corner_neighbor_NE);//list position 0
+            temp_list.Add(corner_neighbor_NW);//list position 1
+            temp_list.Add(corner_neighbor_SW);//list position 2
+            temp_list.Add(corner_neighbor_SE);//list position 3
             List<double> mod_values;
             if (EcoPanel.BallastLocation == 0)
             {
-                mod_values = CornerWeightContribution(1, EcoPanel.ValueFromExcel);
-
+                //mod_values = CornerWeightContribution(1, EcoPanel.ValueFromExcel);
+                Console.WriteLine("Ballast Location 0 found... please revise layout to avoid single rows and columns.");
             }
             mod_values = CornerWeightContribution(EcoPanel.BallastLocation, EcoPanel.ValueFromExcel);
 
-           
-                for (int x = 0; x < temp_list.Count; x++)
+
+            for (int x = 0; x < temp_list.Count; x++)
+            {
+                if (PanelBaseList.Count == 0)
                 {
-                    if (PanelBaseList.Count == 0)
-                    {
-                       
-                        Base new_base = new Base(PanelBaseList.Count().ToString(), temp_list[x]);
-                        new_base.ContributionList.Add(mod_values[x]);
+
+                    Base new_base = new Base(PanelBaseList.Count().ToString(), temp_list[x]);
+                    new_base.ContributionList.Add(mod_values[x]);
                     PanelBaseList.Add(new_base);
+                }
+                else
+                {
+                    List<Base> matching_bases = PanelBaseList.Where(c => Math.Abs(c.Center.Item1 - temp_list[x].Item1) <= .5 && Math.Abs(c.Center.Item2 - temp_list[x].Item2) <= .5).Distinct().ToList();
+                    if (matching_bases.Count() != 0)
+                    {
+                        foreach (var p in matching_bases)
+                        {
+                            p.ContributionList.Add(mod_values[x]);
+                        }
                     }
                     else
                     {
-                        List<Base> matching_bases = PanelBaseList.Where(c => Math.Abs(c.Center.Item1 - temp_list[x].Item1) <= .5 && Math.Abs(c.Center.Item2 - temp_list[x].Item2) <= .5).Distinct().ToList();
-                        if (matching_bases.Count() != 0)
-                        {
-                            foreach (var p in matching_bases)
-                            {
-                                p.ContributionList.Add(mod_values[x]);
-
-                            }
-
-                        }
-                        else
-                        {
-                            Base new_base = new Base(PanelBaseList.Count().ToString(), temp_list[x]);
-                            new_base.ContributionList.Add(mod_values[x]);
+                        Base new_base = new Base(PanelBaseList.Count().ToString(), temp_list[x]);
+                        new_base.ContributionList.Add(mod_values[x]);
                         PanelBaseList.Add(new_base);
 
                     }
-
-
                 }
-                }
-
             }
+        }
         private void CalculateBlockTotalValues(Base base_panel)
         {
             double IFI_Base_Total = 0;
             foreach (double cornerValue in base_panel.ContributionList)
             {
                 IFI_Base_Total += cornerValue; //IFI_Base_Total
-
             }
-            base_panel.UnroundedBallastBlockValue = (IFI_Base_Total / BallastValue) - 0.3; 
+            //KB DEBUG 10.6.16 - changed below from " ...- 0.3" to "... - 0.03" and moved this subtraction into the rounding equation for BallastBlockValue
+            base_panel.UnroundedBallastBlockValue = (IFI_Base_Total / BallastValue);
 
-            base_panel.BallastBlockValue = Convert.ToInt32(Math.Ceiling(base_panel.UnroundedBallastBlockValue));
+            base_panel.BallastBlockValue = Convert.ToInt32(Math.Ceiling(base_panel.UnroundedBallastBlockValue - 0.03));
 
         }
         private Tuple<double, double, int> GenerateNeighbor(int n, double x_start, double y_start, int direction)

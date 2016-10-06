@@ -349,9 +349,9 @@ namespace ExcelInterface
                     workbook.Close(true);
                     panel.ValueFromExcel = CellIO(panel.NE_Zone, panel.NW_Zone, panel.IFI_NORTH_Land, panel.IFI_SOUTH_Land, panel.IFI_E2W_Land, panel.IFI_W2E_Land);
                     Console.WriteLine("Panel {2} of {1}, output Excel Value {0}", panel.ValueFromExcel, PanelList.Count, count);
-                    Console.WriteLine("Uplift Value :" + panel.Uplift);
-                    Console.WriteLine("Sliding Value :" + panel.Sliding);
-                    Console.WriteLine("Center :" + panel.Center);
+                    //Console.WriteLine("Uplift Value :" + panel.Uplift);
+                    //Console.WriteLine("Sliding Value :" + panel.Sliding);
+                    //Console.WriteLine("Center :" + panel.Center);
 
                 }
                 else
@@ -363,14 +363,15 @@ namespace ExcelInterface
                     workbook.Close(true);
                     panel.ValueFromExcel = CellIO(panel.NE_Zone, panel.NW_Zone, panel.IFI_NORTH_Port, panel.IFI_SOUTH_Port, panel.IFI_E2W_Port, panel.IFI_W2E_Port);
                     Console.WriteLine("Panel {2} of {1}, output Excel Value {0}", panel.ValueFromExcel, PanelList.Count, count);
-                    Console.WriteLine("Uplift Value :" + panel.Uplift);
-                    Console.WriteLine("Sliding Value :" + panel.Sliding);
-                    Console.WriteLine("Center :" + panel.Center);
+                    //Console.WriteLine("Uplift Value :" + panel.Uplift);
+                    //Console.WriteLine("Sliding Value :" + panel.Sliding);
+                    //Console.WriteLine("Center :" + panel.Center);
                 }
                 count = count + 1;
             }
             excelApp.Quit();
-        } 
+
+        }
         private Cell GetCell(SpreadsheetDocument excelDoc, string sheetName, string cellCoordinates)
         {
             WorksheetPart worksheetPart = GetWorksheetPart(excelDoc, sheetName);

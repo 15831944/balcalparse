@@ -47,8 +47,6 @@ namespace BallastCalculator
         [STAThread]
         static void Main(string[] args)
         {
-
-
             Application.Run(new UserGUI());
             string file_path = FilePathContainer.dxfPath;
             string output_path = FilePathContainer.outPath;
@@ -66,6 +64,7 @@ namespace BallastCalculator
                 dxfInterface.SetBlockTitle(FilePathContainer.panelName);
             }
             dxfInterface.ParseFile();
+            Console.WriteLine("data retrieved from DXF...");
             BasicDimensions BlockPerimeter = dxfInterface.GetValuesFromBlockSection();
             IFIPerimeter IFIboarder = dxfInterface.GetIFIValues();
             List<EcoPanel> PanelList = dxfInterface.GetEntitiesPanels();
@@ -77,18 +76,20 @@ namespace BallastCalculator
                 EcoPanel.CalculatePanelCenter(BlockPerimeter.Center.Item1, BlockPerimeter.Center.Item2);
                 EcoPanel.SetPanelZones(IFIboarder);
             }
-
+            Console.WriteLine("Panel calculations complete...");
             PanelGrid grid = new PanelGrid(BlockPerimeter, PanelList, bal);
-
             ExInterface.RUNIO(land, PanelList);
-
-            Console.WriteLine("Complete!");
-    
+            Console.WriteLine("Excel IO complete...");
             grid.RunBasePanelCalculations();
-
+            Console.WriteLine("EF3 ballast calculations complete...");
             List<Base> final_bases = grid.PanelBaseList;
-
             dxfInterface.GenerateFileOut(final_bases, PanelList);
+            Console.WriteLine("Output DXF Created. Ballast Calculation Completed.");
+            Console.Write("Press any key to exit...");
+            Console.ReadKey(); //closes console and concludes program run.
+
+
+
             //List<string> matches = dxfInterface.ScanForPanels(); 
             //foreach 
 
@@ -99,7 +100,7 @@ namespace BallastCalculator
             //    //Console.WriteLine("Panel Lift count: " + panel.Uplift);
             //    //Console.WriteLine("Panel Sliding Count: " + panel.Sliding);
 
-          
+
 
             //    //Console.WriteLine("-----------------------------------");
             //    //Console.WriteLine("NE zone: " + panel.NE_Zone);
