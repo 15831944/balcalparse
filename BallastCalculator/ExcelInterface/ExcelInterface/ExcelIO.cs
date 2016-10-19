@@ -336,16 +336,17 @@ namespace ExcelInterface
                 }
             }
             var excelApp = new Application();
+            //var workbook = excelApp.Workbooks.Open(_filePath, true);
             int count = 1;
             foreach (var panel in PanelList)
             {
                 if (land)
                 {
-
                     //KB DEBUG: uplift and sliding were backwards, fixed it.
                     Write_U_and_S_To_Sheet(panel.Uplift.ToString(), panel.Sliding.ToString());
                     var workbook = excelApp.Workbooks.Open(_filePath, true);
                     workbook.Save();
+                    //excelApp.CalculateFullRebuild(); // KB DEBUG - possible process improvement?
                     workbook.Close(true);
                     panel.ValueFromExcel = CellIO(panel.NE_Zone, panel.NW_Zone, panel.IFI_NORTH_Land, panel.IFI_SOUTH_Land, panel.IFI_E2W_Land, panel.IFI_W2E_Land);
                     Console.WriteLine("Panel {2} of {1}, output Excel Value {0}", panel.ValueFromExcel, PanelList.Count, count);
@@ -360,6 +361,7 @@ namespace ExcelInterface
                     Write_U_and_S_To_Sheet(panel.Uplift.ToString(), panel.Sliding.ToString());
                     var workbook = excelApp.Workbooks.Open(_filePath, true);
                     workbook.Save();
+                    //excelApp.CalculateFullRebuild(); // KB DEBUG - possible process improvement?
                     workbook.Close(true);
                     panel.ValueFromExcel = CellIO(panel.NE_Zone, panel.NW_Zone, panel.IFI_NORTH_Port, panel.IFI_SOUTH_Port, panel.IFI_E2W_Port, panel.IFI_W2E_Port);
                     Console.WriteLine("Panel {2} of {1}, output Excel Value {0}", panel.ValueFromExcel, PanelList.Count, count);
